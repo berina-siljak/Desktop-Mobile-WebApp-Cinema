@@ -1,8 +1,5 @@
 DESKTOP
-1. korsinicko ime: administrator
-   Lozinka: test
-
-2. korisnicko ime: uposlenik
+1. korsinicko ime: desktop
    Lozinka: test
 
 MOBILE
