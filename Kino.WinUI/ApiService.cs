@@ -32,7 +32,7 @@ namespace Kino.WinUI
             try
             {
                 if (search != null)
-                {
+                { 
                     url += "?";
                     url += await search.ToQueryString();
                 }
