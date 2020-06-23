@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Kino.MobileApp.Views.ProjekcijeDetailPage">
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="White">
+            <StackLayout  HorizontalOptions="FillAndExpand" Padding="30" VerticalOptions="CenterAndExpand" >
+                <StackLayout Padding="8">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Film:           " FontAttributes="Bold" FontSize="Body"/>
+                                    <Span Text="{Binding Projekcije.Film}"></Span>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+
+
+                <StackLayout Padding="8">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Cijena:           " FontAttributes="Bold" FontSize="Body"/>
+                                    <Span Text="{Binding Projekcije.Cijena}"></Span>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+
+
+                <StackLayout Padding="8">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Datum prikazivanja:           " FontAttributes="Bold" FontSize="Body"/>
+                                    <Span Text="{Binding Projekcije.Datum}"></Span>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+                <Button Text="KUPI KARTU"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center" BackgroundColor="Orange"
+                Clicked="KupiKartu_Clicked" />
+
+            </StackLayout>
+            </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:converters="clr-namespace:Kino.MobileApp.Converters"
+             x:Class="Kino.MobileApp.Views.FilmoviDetailPage">
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="White">
+            <StackLayout  HorizontalOptions="FillAndExpand" Padding="30" VerticalOptions="CenterAndExpand" >
+                <StackLayout HorizontalOptions="Center" VerticalOptions="Center" >
+                    <Image Source="{Binding Filmovi.Slika, Converter={StaticResource imgConv}} "></Image>
+                </StackLayout>
+                <StackLayout Padding="8">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Film:           " FontAttributes="Bold" FontSize="Body"/>
+                                    <Span Text="{Binding Filmovi.Naziv}"></Span>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+
+
+                <StackLayout Padding="8">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Žanr:           " FontAttributes="Bold" FontSize="Body"/>
+                                    <Span Text="{Binding Filmovi.NazivZanra}"></Span>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+
+
+                <StackLayout Padding="8">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Režiser:           " FontAttributes="Bold" FontSize="Body"/>
+                                    <Span Text="{Binding Filmovi.Reziser}"></Span>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+
+                <StackLayout Padding="8">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Trajanje:           " FontAttributes="Bold" FontSize="Body"/>
+                                    <Span Text="{Binding Filmovi.Trajanje}"></Span>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+
+
+                <StackLayout Padding="8">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Glumci:           " FontAttributes="Bold" FontSize="Body"/>
+                                    <Span Text="{Binding Filmovi.Glumci}"></Span>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+
+                <StackLayout Padding="8">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Godina izdavanja:           " FontAttributes="Bold" FontSize="Body"/>
+                                    <Span Text="{Binding Filmovi.GodinaIzdavanja}"></Span>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+
+
+                <StackLayout Padding="8">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Opis:           " FontAttributes="Bold" FontSize="Body"/>
+                                    <Span Text="{Binding Filmovi.Opis}"></Span>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" Grid.Column="0">
+                </StackLayout>
+                <StackLayout>
+                    <StackLayout  HorizontalOptions="FillAndExpand" Padding="30" VerticalOptions="CenterAndExpand">
+
+                        <Label Text="Ostavi Komentar"></Label>
+                        <Entry  x:Name="Sadrzaj" Text="{ Binding Komentar.Sadrzaj}"></Entry>
+                        <Button Clicked="Button_Clicked" Text="Dodaj komentar" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Orange" ></Button>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Komentari:"></Label>
+                    </StackLayout>
+                    <ListView ItemsSource="{Binding KomentariList}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Vertical">
+                                        <StackLayout Spacing="10">
+                                            <Label>
+                                                <Label.FormattedText>
+                                                    <FormattedString >
+                                                        <FormattedString.Spans>
+                                                            <Span Text="{Binding KorisnickoIme}"  FontAttributes="Bold" FontSize="Body" Style="{DynamicResource ListItemDetailTextStyle}"></Span>
+                                                            <Span Text="    " FontSize="9" Style="{DynamicResource ListItemDetailTextStyle}"></Span>
+                                                            <Span Text="{Binding VrijemeKreiranja}" FontSize="9" Style="{DynamicResource ListItemDetailTextStyle}"></Span>
+                                                        </FormattedString.Spans>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </StackLayout>
+                                        <StackLayout Padding="8">
+                                            <Label>
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <FormattedString.Spans>
+                                                            <Span Text="{Binding Sadrzaj}" FontSize="13" Style="{DynamicResource ListItemDetailTextStyle}"></Span>
+                                                        </FormattedString.Spans>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

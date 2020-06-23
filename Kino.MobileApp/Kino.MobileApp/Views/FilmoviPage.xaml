@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Kino.MobileApp.ViewModels"
+             xmlns:converters="clr-namespace:Kino.MobileApp.Converters"
+             mc:Ignorable="d"
+             x:Class="Kino.MobileApp.Views.FilmoviPage">
+    <ContentPage.BindingContext>
+        <viewModels:FilmoviViewModel>
+        </viewModels:FilmoviViewModel>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Filmovi"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Picker ItemsSource="{Binding ZanroviList}" SelectedItem="{Binding SelectedZanr}" ItemDisplayBinding="{Binding Naziv}"></Picker>
+            <ListView ItemsSource="{Binding FilmoviList}" ItemSelected="ListView_OnItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout>
+                                    <Image Source="{Binding Slika, Converter={StaticResource imgConv}}"></Image>
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical">
+                                    <StackLayout Padding="8">
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <FormattedString.Spans>
+                                                        <Span Text="{Binding Naziv}" FontAttributes="Bold" FontSize="18"></Span>
+                                                    </FormattedString.Spans>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+                                    <StackLayout Padding="8">
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <FormattedString.Spans>
+                                                        <Span Text="{Binding Opis}" FontSize="13" Style="{DynamicResource ListItemDetailTextStyle}"></Span>
+                                                    </FormattedString.Spans>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+                                    <StackLayout Padding="8">
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <FormattedString.Spans>
+                                                        <Span Text="Trajanje:" FontAttributes="Bold" FontSize="Body"/>
+                                                        <Span Text="{Binding Trajanje}" FontSize="13" Style="{DynamicResource ListItemDetailTextStyle}"></Span>
+                                                    </FormattedString.Spans>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+                                <!--<StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Opis}" 
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />--><!--
+                                </StackLayout>-->
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

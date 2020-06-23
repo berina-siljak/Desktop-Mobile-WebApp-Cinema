@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Kino.MobileApp.Views.UlaznicePage">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Padding="10">
+                <Label Text="Vase Ulaznice:" HorizontalOptions="CenterAndExpand"  FontSize="Medium"></Label>
+            </StackLayout>
+            <ListView ItemsSource="{Binding UlazniceList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <StackLayout Padding="8">
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <FormattedString.Spans>
+                                                    <Span Text="Datum: " FontAttributes="Bold" FontSize="Body"/>
+                                                    <Span Text="{Binding Datum}"></Span>
+                                                </FormattedString.Spans>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+                                <StackLayout Padding="8">
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <FormattedString.Spans>
+                                                    <Span Text="Film:" FontAttributes="Bold" FontSize="Body"/>
+                                                    <Span Text="{Binding Projekcija}"></Span>
+                                                </FormattedString.Spans>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+                                <StackLayout Padding="8">
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <FormattedString.Spans>
+                                                    <Span Text="Sala: " FontAttributes="Bold" FontSize="Body"/>
+                                                    <Span Text="{Binding Sala}"></Span>
+                                                </FormattedString.Spans>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+                                <StackLayout Padding="8">
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <FormattedString.Spans>
+                                                    <Span Text="Cijena: " FontAttributes="Bold" FontSize="Body"/>
+                                                    <Span Text="{Binding CijenaSaPopustom}"></Span>
+                                                </FormattedString.Spans>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+                                <StackLayout Padding="8">
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <FormattedString.Spans>
+                                                    <Span Text="Sjediste: " FontAttributes="Bold" FontSize="Body"/>
+                                                    <Span Text="{Binding OznakaSjedista}"></Span>
+                                                </FormattedString.Spans>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+                            </StackLayout>
+      
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
