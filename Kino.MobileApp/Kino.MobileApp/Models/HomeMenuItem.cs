@@ -12,7 +12,10 @@ namespace Kino.MobileApp.Models
         Projekcije,
         Ulaznice,
         Pocetna,
-        Profil
+        Profil,
+        Zadatak
+        
+      
     }
     public class HomeMenuItem
     {

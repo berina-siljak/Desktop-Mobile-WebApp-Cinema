@@ -3,81 +3,57 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:Kino.MobileApp.Converters"
              mc:Ignorable="d"
              x:Class="Kino.MobileApp.Views.UlaznicePage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
 
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Padding="10">
-                <Label Text="Vase Ulaznice:" HorizontalOptions="CenterAndExpand"  FontSize="Medium"></Label>
+                <Label Text="Vaše ulaznice:" HorizontalOptions="CenterAndExpand"  FontSize="Medium"></Label>
             </StackLayout>
-            <ListView ItemsSource="{Binding UlazniceList}">
+            <ListView ItemsSource="{Binding UlazniceList}"  ItemSelected="ListView_OnItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10">
-                                <StackLayout Padding="8">
-                                    <Label>
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <FormattedString.Spans>
-                                                    <Span Text="Datum: " FontAttributes="Bold" FontSize="Body"/>
-                                                    <Span Text="{Binding Datum}"></Span>
-                                                </FormattedString.Spans>
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
+                            <StackLayout Margin="10,10,10,10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                                <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Center" >
+                                    <Image Source="{Binding BarCodeImg, Converter={StaticResource imgConv}}" WidthRequest="180" HeightRequest="180" HorizontalOptions="StartAndExpand" VerticalOptions="Center" ></Image>
                                 </StackLayout>
-                                <StackLayout Padding="8">
-                                    <Label>
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <FormattedString.Spans>
-                                                    <Span Text="Film:" FontAttributes="Bold" FontSize="Body"/>
-                                                    <Span Text="{Binding Projekcija}"></Span>
-                                                </FormattedString.Spans>
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                </StackLayout>
-                                <StackLayout Padding="8">
-                                    <Label>
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <FormattedString.Spans>
-                                                    <Span Text="Sala: " FontAttributes="Bold" FontSize="Body"/>
-                                                    <Span Text="{Binding Sala}"></Span>
-                                                </FormattedString.Spans>
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                </StackLayout>
-                                <StackLayout Padding="8">
-                                    <Label>
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <FormattedString.Spans>
-                                                    <Span Text="Cijena: " FontAttributes="Bold" FontSize="Body"/>
-                                                    <Span Text="{Binding CijenaSaPopustom}"></Span>
-                                                </FormattedString.Spans>
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                </StackLayout>
-                                <StackLayout Padding="8">
-                                    <Label>
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <FormattedString.Spans>
-                                                    <Span Text="Sjediste: " FontAttributes="Bold" FontSize="Body"/>
-                                                    <Span Text="{Binding OznakaSjedista}"></Span>
-                                                </FormattedString.Spans>
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
+                                <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" >
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" >
+                                        <Label VerticalOptions="Start" Text="Datum Projekcije: "></Label>
+                                        <Label HorizontalOptions="Start" FontAttributes="Bold" Text="{Binding DatumProjekcije}"></Label>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" >
+                                        <Label VerticalOptions="Center" Text="Film: "></Label>
+                                        <Label VerticalOptions="Center" Text="{Binding Projekcija}"></Label>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" >
+                                        <Label VerticalOptions="Center" Text="Sala: "></Label>
+                                        <Label VerticalOptions="Center" Text="{Binding Sala}"></Label>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" >
+                                        <Label VerticalOptions="Center" Text="Sjediste: "></Label>
+                                        <Label VerticalOptions="Center" Text="{Binding OznakaSjedista}"></Label>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" >
+                                        <Label VerticalOptions="Center" Text="Cijena: "></Label>
+                                        <Label VerticalOptions="Center" Text="{Binding CijenaSaPopustom}"></Label>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" >
+                                        <Label VerticalOptions="Start" FontSize="10" Text="Datum Kupovine: "></Label>
+                                        <Label HorizontalOptions="Start"  FontSize="10" FontAttributes="Bold" Text="{Binding Datum}"></Label>
+                                    </StackLayout>
                                 </StackLayout>
                             </StackLayout>
-      
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

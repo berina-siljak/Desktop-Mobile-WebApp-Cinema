@@ -1,0 +1,77 @@
+﻿
+
+@using Kino.Model
+@model List<SjedistaViewModel>
+<div class="row">
+    <div class="col-12">
+        <div class="card card-warning">
+            <div class="card-header">
+                <h3 class="card-title"></h3>
+
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" id="table_search" onkeyup="searchTable()" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" onclick="searchTable()" class="btn btn-default"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Oznaka reda</th>
+                            <th>Oznaka kolone</th>
+                            <th>Sala</th>
+
+                            <th class="text-center">Uredi</th>
+                            <th class="text-center">Obriši</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.OznakaReda</td>
+                                <td>@item.OznakaKolone</td>
+                                <td>@item.Sala</td>
+                                <td class="text-center">
+                                    <a class="" href="/Sjedista/Edit/@item.SjedisteID"><i class="fa fa-edit"></i></a>
+                                </td>
+                                <td class="text-center">
+                                    <a class="" href="/Sjedista/Delete/@item.SjedisteID"><i class="fa fa-times"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+
+<script>
+    function searchTable() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("table_search");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dataTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>

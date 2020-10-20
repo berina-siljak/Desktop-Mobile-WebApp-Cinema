@@ -1,0 +1,151 @@
+﻿@using Kino.WebApp.Models;
+@model FilmoviViewModel;
+@using (Html.BeginForm("Snimi", "Filmovi", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-8">
+            <!-- general form elements -->
+            <div class="card card-warning">
+                <div class="card-header">
+                    <h3 class="card-title">Detalji</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+
+                <div class="card-body">
+                    @Html.HiddenFor(model => model.FilmID)
+                    <div class="form-group">
+                        <label for="nazivFilma">Naziv filma:</label>
+                        @Html.TextBoxFor(m => m.Naziv, new { @class = "form-control", @placeholder = "" })
+                        @Html.ValidationMessageFor(model => model.Naziv, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reziser">Režiser:</label>
+                        @Html.TextBoxFor(m => m.Reziser, new { @class = "form-control", @placeholder = "" })
+                        @Html.ValidationMessageFor(model => model.Reziser, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="glumci">Glumci:</label>
+                        @Html.TextBoxFor(m => m.Glumci, new { @class = "form-control", @placeholder = "" })
+                        @Html.ValidationMessageFor(model => model.Glumci, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="godina">Godina:</label>
+                        @Html.TextBoxFor(m => m.GodinaIzdavanja, new { @class = "form-control", @placeholder = "", @type = "number" })
+                        @Html.ValidationMessageFor(model => model.GodinaIzdavanja, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+                        <label for="trajanje">Trajanje:</label>
+
+                        @Html.TextBoxFor(m => m.Trajanje, new { @class = "form-control", @placeholder = "", @type = "number" })
+                        @Html.ValidationMessageFor(model => model.Trajanje, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+                        <label for="url">URL:</label>
+                        @Html.TextBoxFor(m => m.VideoUrl, new { @class = "form-control", @placeholder = "", @type = "text" })
+
+                    </div>
+                    <div class="form-group">
+                        <label for="zanr">Žanr:</label>
+                        @Html.DropDownListFor(model => model.ZanrID, (IEnumerable<SelectListItem>)@ViewBag.Zanrovi, "Odaberite Žanr", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ZanrID, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- /.card-body -->
+                    <div class="form-group">
+                        <label for="opis">Opis:</label>
+                        @Html.TextBoxFor(m => m.Opis, new { @class = "form-control", @placeholder = "" })
+                        @Html.ValidationMessageFor(model => model.Opis, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class=" float-right">
+                        <button type="submit" class="btn btn-success">Spremi</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--/.col (left) -->
+        <!-- right column -->
+        <div class="col-md-4">
+            <!-- general form elements disabled -->
+            <div class="card card-warning">
+                <div class="card-header">
+                    <h3 class="card-title">Slika:</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="exampleInputFile">Slika</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    @Html.TextBoxFor(m => m.Slika, new { @class = "custom-file-input", type = "file", name = "image", accept = "image/*" })
+                                    <label class="custom-file-label" for="exampleInputFile">Odaberite sliku</label>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="input-group text-center">
+                            @if (Model != null)
+                            {
+                                <img id="imagePlaceholder" src="@Model.SlikaUrl" style="width:300px; display:block; margin:auto; border:inset;" />
+                            }
+                            else
+                            {
+                                <img id="imagePlaceholder" src="~/images/broken-1.png" style="width:300px; display:block; margin:auto; border:inset;" />
+                            }
+                        </div>
+
+                        <div class="card-footer float-right">
+                            <button type="submit" class="btn btn btn-success">Spremi</button>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+        <!--/.col (right) -->
+
+
+    </div>
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imagePlaceholder').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]); // convert to base64 string
+            }
+        }
+
+        //postavlja ime fila u textbox
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).next(".custom-file-label").html(fileName);
+        });
+
+        //kad se slika koja se uploada promjeni da zamjeni sliku koja se prikazuje
+        $("#Slika").change(function () {
+            readURL(this);
+        });
+    });
+</script>

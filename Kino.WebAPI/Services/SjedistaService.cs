@@ -30,6 +30,14 @@ namespace Kino.WebAPI.Services
             var list = q.ToList();
             return _mapper.Map<List<Model.Sjedista>>(list);
         }
+        public Model.Sjedista GetById(int id)
+        {
+            //var entity = _context.Sjedista.Include(x=>x.).Find(id);
+           var entity= _context.Set<Database.Sjedista>().Include(x => x.Sala).FirstOrDefault(x=>x.SjedisteID==id);
+            return _mapper.Map<Model.Sjedista>(entity);
+        }
+
+
 
         public List<Model.Sjedista> Insert(SjedistaInsertRequest request)
         {

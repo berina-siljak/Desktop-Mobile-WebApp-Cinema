@@ -1,0 +1,41 @@
+﻿
+
+@using Kino.WebApp.Models;
+@model SjedistaViewModel;
+@using (Html.BeginForm("Snimi", "Sjedista", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-8">
+            <!-- general form elements -->
+            <div class="card card-warning">
+                <div class="card-header">
+                    <h3 class="card-title">Detalji</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+
+                <div class="card-body">
+                    @Html.HiddenFor(model => model.SjedisteID)
+                    <div class="form-group">
+                        <label for="nazivFilma">Oznaka reda</label>
+                        @Html.TextBoxFor(m => m.OznakaReda, new { @class = "form-control", @placeholder = "" })
+                    </div>
+                    <div class="form-group">
+                        <label for="nazivFilma">Oznaka kolone</label>
+                        @Html.TextBoxFor(m => m.OznakaKolone, new { @class = "form-control", @placeholder = "" })
+                    </div>
+                    <div class="form-group">
+                        <label for="nazivFilma">Sala: </label>
+                        @Html.TextBoxFor(m => m.Sala, new { @class = "form-control", @placeholder = "" })
+                    </div>
+
+                    <div class="card-footer float-right">
+                        <button type="submit" class="btn btn-success">Snimi</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}

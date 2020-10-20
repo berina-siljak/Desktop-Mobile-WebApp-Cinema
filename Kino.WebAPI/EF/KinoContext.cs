@@ -28,6 +28,7 @@ namespace Kino.WebAPI.EF
         public DbSet<Sale> Sjedista { get; set; }
         public DbSet<Projekcije> Projekcije { get; set; }
         public DbSet<Ulaznice> Ulaznice { get; set; }
+        public DbSet<Ocjene> Ocjene { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

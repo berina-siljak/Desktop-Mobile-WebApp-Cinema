@@ -26,6 +26,7 @@ namespace Kino.WebAPI.Services
                 .Include(x => x.Projekcija.Film.Zanr)
                 .ToList();
 
+
             if (MojeUlaznice.Count() > 0)
             {
                 List<Zanrovi> sviZanrovi = new List<Zanrovi>();

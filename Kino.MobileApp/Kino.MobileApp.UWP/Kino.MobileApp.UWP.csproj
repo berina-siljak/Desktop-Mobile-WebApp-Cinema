@@ -104,6 +104,8 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\emptystar.png" />
+    <Content Include="Assets\fillstar.png" />
     <Content Include="Assets\logo.png" />
     <Content Include="cinema.jpg" />
     <Content Include="Properties\Default.rd.xml" />

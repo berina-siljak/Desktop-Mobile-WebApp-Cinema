@@ -39,6 +39,8 @@ namespace Kino.WebAPI.Migrations
 
                     b.Property<int>("Trajanje");
 
+                    b.Property<string>("VideoUrl");
+
                     b.Property<int>("ZanrID");
 
                     b.HasKey("FilmID");
@@ -146,6 +148,27 @@ namespace Kino.WebAPI.Migrations
                     b.HasKey("KupacID");
 
                     b.ToTable("Kupci");
+                });
+
+            modelBuilder.Entity("Kino.WebAPI.Database.Ocjene", b =>
+                {
+                    b.Property<int>("OcjenaID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("FilmID");
+
+                    b.Property<int>("KupacID");
+
+                    b.Property<int>("Ocjena");
+
+                    b.HasKey("OcjenaID");
+
+                    b.HasIndex("FilmID");
+
+                    b.HasIndex("KupacID");
+
+                    b.ToTable("Ocjene");
                 });
 
             modelBuilder.Entity("Kino.WebAPI.Database.Projekcije", b =>
@@ -299,6 +322,19 @@ namespace Kino.WebAPI.Migrations
                     b.HasOne("Kino.WebAPI.Database.Uloge", "Uloga")
                         .WithMany("KorisniciUloge")
                         .HasForeignKey("UlogaID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Kino.WebAPI.Database.Ocjene", b =>
+                {
+                    b.HasOne("Kino.WebAPI.Database.Filmovi", "Filmovi")
+                        .WithMany()
+                        .HasForeignKey("FilmID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Kino.WebAPI.Database.Kupci", "Kupac")
+                        .WithMany()
+                        .HasForeignKey("KupacID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

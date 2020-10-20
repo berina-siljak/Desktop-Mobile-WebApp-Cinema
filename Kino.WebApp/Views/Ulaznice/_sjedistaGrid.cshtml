@@ -1,0 +1,83 @@
+﻿
+@{
+    Layout = null;
+    @using Kino.WebApp.Models;
+    @model ProjekcijeSjedistaViewModel;
+    int iterator = 0;
+}
+<style>
+    input[type=text]:disabled {
+  background: red !important;
+}
+    td, th {
+  text-align: center;
+  padding: 10px;
+}
+    input[type=checkbox] {
+    transform: scale(2);
+    -ms-transform: scale(2);
+    -webkit-transform: scale(2);
+    padding: 10px;
+    margin-right:20px;
+}
+</style>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>_sjedistaGrid</title>
+</head>
+<body>
+
+    @if (Model != null)
+    {
+        <div class="form-group">
+            <label>Film:  </label>
+            <label>@Model.projekcija.NazivFilma </label>
+        </div>
+        <div class="form-group">
+            <label>Cijena:  </label>
+            <label>@Model.projekcija.Cijena KM</label>
+        </div>
+        <div class="form-group">
+            <label>Sala:  </label>
+            <label>@Model.projekcija.NazivSale </label>
+        </div>
+        <table class="myTable">
+            <tbody>
+                @for (int i = 0; i < Convert.ToInt32(Model.brojRedova); i++)
+                {
+                    <tr>
+                        @for (int j = 0; j < Convert.ToInt32(Model.brojKolona); j++)
+                        {
+                        <td>
+                            @if (Model.sjedista[iterator].Zauzeto)
+                            {
+                                <input type="checkbox" disabled name="text6" value="@Model.sjedista[iterator].SjedisteID" /><label for="text6">@Model.sjedista[iterator].OznakaReda-@Model.sjedista[iterator].OznakaKolone</label>
+                            }
+                            else
+                            {
+                                <input type="checkbox" name="text6" value="@Model.sjedista[iterator].SjedisteID" /><label for="text6">@Model.sjedista[iterator].OznakaReda-@Model.sjedista[iterator].OznakaKolone</label>
+                            }
+                            @{iterator++;}
+                        </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</body>
+
+</html>
+<script>
+    $(function () {
+        $('#sjedistaContainer input[type=checkbox]').change(function () { // while you're at it listen for change rather than click, this is in case something else modifies the checkbox
+            $('#sjedistaContainer table tbody tr input:checkbox').each(function () {
+                if (this.checked) {
+                    $("#SjedisteID").val(this.value);
+                }
+            });
+        });
+    });
+</script>

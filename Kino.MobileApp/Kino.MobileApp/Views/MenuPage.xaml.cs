@@ -26,6 +26,11 @@ namespace Kino.MobileApp.Views
                 new HomeMenuItem {Id = MenuItemType.Ulaznice, Title="Moje ulaznice" },
                 new HomeMenuItem {Id = MenuItemType.Profil, Title="Profil" },
                 new HomeMenuItem {Id = MenuItemType.Odjava, Title="Odjava" }
+                             
+
+
+
+
             };
 
             ListViewMenu.ItemsSource = menuItems;

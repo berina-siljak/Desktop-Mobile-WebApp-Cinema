@@ -1,0 +1,48 @@
+﻿
+
+@using Kino.WebApp.Models;
+@model SaleViewModel;
+@using (Html.BeginForm("Snimi", "Sale", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-8">
+            <!-- general form elements -->
+            <div class="card card-warning">
+                <div class="card-header">
+                    <h3 class="card-title">DODAJ/UREDI</h3>
+                   
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+
+                <div class="card-body">
+                    @Html.HiddenFor(model => model.SalaID)
+                    <div class="form-group">
+                        <label for="nazivFilma">Naziv sale:</label>
+                        @Html.TextBoxFor(m => m.Naziv, new { @class = "form-control", @placeholder = "" })
+                        @Html.ValidationMessageFor(model => model.Naziv, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+                        <label for="nazivFilma">Broj redova:</label>
+                        @Html.TextBoxFor(m => m.BrojRedova, new { @class = "form-control", @placeholder = "" , @type="number"})
+                        @Html.ValidationMessageFor(model => model.BrojRedova, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+                        <label for="nazivFilma">Broj kolona:</label>
+                        @Html.TextBoxFor(m => m.BrojKolona, new { @class = "form-control", @placeholder = "", @type="number" })
+                        @Html.ValidationMessageFor(model => model.BrojKolona, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="float-right">
+                        <button type="submit" class="btn btn-success">Spremi</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}

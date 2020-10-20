@@ -30,7 +30,7 @@
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
                                 <StackLayout>
-                                    <Image Source="{Binding Slika, Converter={StaticResource imgConv}}"></Image>
+                                    <Image Source="{Binding Slika, Converter={StaticResource imgConv}}" WidthRequest="200"></Image>
                                 </StackLayout>
                                 <StackLayout Orientation="Vertical">
                                     <StackLayout Padding="8">
@@ -67,11 +67,6 @@
                                             </Label.FormattedText>
                                         </Label>
                                     </StackLayout>
-                                <!--<StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding Opis}" 
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                FontSize="13" />--><!--
-                                </StackLayout>-->
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>

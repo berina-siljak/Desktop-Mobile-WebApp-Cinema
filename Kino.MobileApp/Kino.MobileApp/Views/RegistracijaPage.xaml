@@ -13,23 +13,23 @@
         <ScrollView>
             <StackLayout  HorizontalOptions="FillAndExpand" Padding="30" VerticalOptions="CenterAndExpand">
 
-                <Label Text="Ime"></Label>
+                <Label Text="Ime:"></Label>
                 <Entry  x:Name="Ime" Text="{ Binding Ime}"></Entry>
-                <Label Text="Prezime"></Label>
+                <Label Text="Prezime:"></Label>
                 <Entry x:Name="Prezime" Text="{ Binding Prezime}"></Entry>
 
-                <Label Text="Telefon"></Label>
+                <Label Text="Telefon:"></Label>
                 <Entry x:Name="BrojTelefona" Text="{ Binding BrojTelefona}"></Entry>
-                <Label Text="Email"></Label>
+                <Label Text="E-mail:"></Label>
                 <Entry x:Name="Email" Text="{ Binding Email}"></Entry>
-                <Label Text="Korisničko ime"></Label>
+                <Label Text="Korisničko ime:"></Label>
                 <Entry x:Name="KorisnickoIme" Text="{Binding KorisnickoIme}"></Entry>
-                <Label  Text="Password"></Label>
+                <Label  Text="Lozinka:"></Label>
                 <Entry x:Name="Password" Text="{Binding Password}" IsPassword="True"></Entry>
-                <Label  Text="Potvrda passworda"></Label>
+                <Label  Text="Potvrda lozinke:"></Label>
                 <Entry x:Name="PasswordPotvrda" Text="{Binding PasswordPotvrda}" IsPassword="True"></Entry>
 
-                <Button Clicked="Button_Clicked"  HorizontalOptions="FillAndExpand" Text="Registriraj se" BackgroundColor="Orange"></Button>
+                <Button Clicked="Button_Clicked"  HorizontalOptions="FillAndExpand" Text="Registruj se!" BackgroundColor="Orange"></Button>
                 <Label IsVisible="{Binding IsBusy}" Text="..."></Label>
                 <StackLayout>
              

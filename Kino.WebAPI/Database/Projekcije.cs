@@ -22,5 +22,6 @@ namespace Kino.WebAPI.Database
         [ForeignKey("FilmID")]
         public Filmovi Film { get; set; }
         public int FilmID { get; set; }
+
     }
 }

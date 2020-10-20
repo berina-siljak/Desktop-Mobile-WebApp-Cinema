@@ -1,4 +1,5 @@
 ﻿using Kino.MobileApp.ViewModels;
+using Kino.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,11 @@ namespace Kino.MobileApp.Views
         {
             base.OnAppearing();
             await model.Init();
+        }
+        private async void ListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var item = e.SelectedItem as Ulaznice;
+            await Navigation.PushAsync(new UlazniceDetailPage(item));
         }
     }
 }

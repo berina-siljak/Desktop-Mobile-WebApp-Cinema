@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:winControls="clr-namespace:Windows.UI.Xaml.Controls;assembly=Windows, Version=255.255.255.255, Culture=neutral, PublicKeyToken=null, ContentType=WindowsRuntime;targetPlatform=Windows"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:customcontrol="clr-namespace:Kino.MobileApp.Views"
              mc:Ignorable="d"
              xmlns:converters="clr-namespace:Kino.MobileApp.Converters"
              x:Class="Kino.MobileApp.Views.FilmoviDetailPage">
@@ -14,146 +16,74 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <ScrollView BackgroundColor="White">
-            <StackLayout  HorizontalOptions="FillAndExpand" Padding="30" VerticalOptions="CenterAndExpand" >
-                <StackLayout HorizontalOptions="Center" VerticalOptions="Center" >
-                    <Image Source="{Binding Filmovi.Slika, Converter={StaticResource imgConv}} "></Image>
+        <ScrollView BackgroundColor="#FFFFFF" IsEnabled="True">
+            <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <StackLayout Margin="10,10,10,10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Center" >
+                        <Image Source="{Binding Filmovi.Slika, Converter={StaticResource imgConv}}" WidthRequest="200"></Image>
                 </StackLayout>
-                <StackLayout Padding="8">
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <FormattedString.Spans>
-                                    <Span Text="Film:           " FontAttributes="Bold" FontSize="Body"/>
-                                    <Span Text="{Binding Filmovi.Naziv}"></Span>
-                                </FormattedString.Spans>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </StackLayout>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" >
+                    <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" >
+                        <Label HorizontalOptions="Start" FontSize="Title" FontAttributes="Bold" Text="{Binding Filmovi.Naziv}"></Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" >
+                            <Label VerticalOptions="Center" TextColor="Gray" FontSize="12" Text="{Binding Filmovi.GodinaIzdavanja}"></Label>
+                            <Label VerticalOptions="Center" TextColor="Gray" FontSize="12" Text=" • "></Label>
+                            <Label VerticalOptions="Center" TextColor="Gray" FontSize="12" Text="{Binding Filmovi.Trajanje}"></Label>
+                            <Label VerticalOptions="Center" TextColor="Gray" FontSize="12" Text="min •"></Label>
+                            <Label VerticalOptions="Center" TextColor="Gray" FontSize="12" Text="{Binding Filmovi.NazivZanra}"></Label>
+                    </StackLayout>
+                        <StackLayout  Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start"  VerticalOptions="Center">
+                                <customcontrol:RattingBar x:Name="customRattingBar" VerticalOptions="Center" ImageWidth="18" ImageHeight="18" Command="{Binding rattingBarCommand}" SelectedStarValue="{Binding ProsjecnaOcjena}" FillStarImage="Assets/fillstar.png" EmptyStarImage="Assets/emptystar.png"/>
+                                <Label VerticalOptions="Center" FontSize="12" Text="{Binding ProsjecnaOcjena}"></Label>
+                                <Label VerticalOptions="Center" FontSize="12" Text="{Binding BrojGlasova}"></Label>
+                                <Button Command="{Binding clickCommand}" CommandParameter="{x:Reference Name=customRattingBar}" Text="Ocijeni" TextColor="White" HorizontalOptions="End" VerticalOptions="Center" ></Button>
+                            </StackLayout>
+                     
 
-
-                <StackLayout Padding="8">
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <FormattedString.Spans>
-                                    <Span Text="Žanr:           " FontAttributes="Bold" FontSize="Body"/>
-                                    <Span Text="{Binding Filmovi.NazivZanra}"></Span>
-                                </FormattedString.Spans>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </StackLayout>
-
-
-                <StackLayout Padding="8">
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <FormattedString.Spans>
-                                    <Span Text="Režiser:           " FontAttributes="Bold" FontSize="Body"/>
-                                    <Span Text="{Binding Filmovi.Reziser}"></Span>
-                                </FormattedString.Spans>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </StackLayout>
-
-                <StackLayout Padding="8">
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <FormattedString.Spans>
-                                    <Span Text="Trajanje:           " FontAttributes="Bold" FontSize="Body"/>
-                                    <Span Text="{Binding Filmovi.Trajanje}"></Span>
-                                </FormattedString.Spans>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="CenterAndExpand">
+                            <Label VerticalOptions="Center" FontSize="12" Text="{Binding Filmovi.Opis}"></Label>
+                    </StackLayout>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Start"  VerticalOptions="Center">
+                            <Label LineBreakMode="NoWrap" FontSize="12" HorizontalOptions="Start" FontAttributes="Bold" Text="Režiser:"></Label>
+                            <Label FontSize="12" Text="{Binding Filmovi.Reziser}"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label FontSize="12" LineBreakMode="NoWrap" FontAttributes="Bold" Text="Glumci:"></Label>
+                            <Label FontSize="12" Text="{Binding Filmovi.Glumci}"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Start"  VerticalOptions="Center">
+                            <StackLayout Spacing="10" Orientation="Horizontal">
+                                <Button Clicked="ButtonTrailer_Clicked" Text="Trailer" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" ></Button>
+                                <Button Clicked="ButtonPodijeli_Clicked" Text="Podijeli" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" ></Button>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
                 </StackLayout>
 
-
-                <StackLayout Padding="8">
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <FormattedString.Spans>
-                                    <Span Text="Glumci:           " FontAttributes="Bold" FontSize="Body"/>
-                                    <Span Text="{Binding Filmovi.Glumci}"></Span>
-                                </FormattedString.Spans>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </StackLayout>
-
-                <StackLayout Padding="8">
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <FormattedString.Spans>
-                                    <Span Text="Godina izdavanja:           " FontAttributes="Bold" FontSize="Body"/>
-                                    <Span Text="{Binding Filmovi.GodinaIzdavanja}"></Span>
-                                </FormattedString.Spans>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </StackLayout>
-
-
-                <StackLayout Padding="8">
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <FormattedString.Spans>
-                                    <Span Text="Opis:           " FontAttributes="Bold" FontSize="Body"/>
-                                    <Span Text="{Binding Filmovi.Opis}"></Span>
-                                </FormattedString.Spans>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </StackLayout>
-
-                <StackLayout Grid.Row="1" Grid.Column="0">
-                </StackLayout>
-                <StackLayout>
-                    <StackLayout  HorizontalOptions="FillAndExpand" Padding="30" VerticalOptions="CenterAndExpand">
-
-                        <Label Text="Ostavi Komentar"></Label>
+                <!--</StackLayout>-->
+                <StackLayout Margin="10,10,10,10" VerticalOptions="FillAndExpand">
+                    <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                        <Label Text="Ostavi komentar"></Label>
                         <Entry  x:Name="Sadrzaj" Text="{ Binding Komentar.Sadrzaj}"></Entry>
-                        <Button Clicked="Button_Clicked" Text="Dodaj komentar" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Orange" ></Button>
+                        <Button Clicked="ButtonKomentar_Clicked" Text="Dodaj komentar" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" ></Button>
                     </StackLayout>
                     <StackLayout>
-                        <Label Text="Komentari:"></Label>
+                        <Label Text="Komentari:" FontAttributes="Bold"></Label>
                     </StackLayout>
                     <ListView ItemsSource="{Binding KomentariList}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <StackLayout Orientation="Vertical">
-                                        <StackLayout Spacing="10">
-                                            <Label>
-                                                <Label.FormattedText>
-                                                    <FormattedString >
-                                                        <FormattedString.Spans>
-                                                            <Span Text="{Binding KorisnickoIme}"  FontAttributes="Bold" FontSize="Body" Style="{DynamicResource ListItemDetailTextStyle}"></Span>
-                                                            <Span Text="    " FontSize="9" Style="{DynamicResource ListItemDetailTextStyle}"></Span>
-                                                            <Span Text="{Binding VrijemeKreiranja}" FontSize="9" Style="{DynamicResource ListItemDetailTextStyle}"></Span>
-                                                        </FormattedString.Spans>
-                                                    </FormattedString>
-                                                </Label.FormattedText>
-                                            </Label>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding KorisnickoIme}" FontAttributes="Bold" FontSize="Body" ></Label>
+                                            <Label Text="{Binding VrijemeKreiranja}" VerticalOptions="Center" FontSize="9"></Label>
                                         </StackLayout>
-                                        <StackLayout Padding="8">
-                                            <Label>
-                                                <Label.FormattedText>
-                                                    <FormattedString>
-                                                        <FormattedString.Spans>
-                                                            <Span Text="{Binding Sadrzaj}" FontSize="13" Style="{DynamicResource ListItemDetailTextStyle}"></Span>
-                                                        </FormattedString.Spans>
-                                                    </FormattedString>
-                                                </Label.FormattedText>
-                                            </Label>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding Sadrzaj}"  FontSize="13"></Label>
                                         </StackLayout>
                                     </StackLayout>
                                 </ViewCell>
@@ -161,6 +91,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </StackLayout>
+
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

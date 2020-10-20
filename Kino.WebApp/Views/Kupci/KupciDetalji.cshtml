@@ -1,0 +1,65 @@
+﻿@using Kino.WebApp.Models;
+@model KupciViewModel;
+@using (Html.BeginForm("Snimi", "Kupci", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-8">
+            <!-- general form elements -->
+            <div class="card card-warning">
+                <div class="card-header">
+                    <h3 class="card-title">DODAJ/UREDI</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+
+                <div class="card-body">
+                    @Html.HiddenFor(model => model.KupacID)
+                    <div class="form-group">
+                        <label for="nazivFilma">Ime:</label>
+                        @Html.TextBoxFor(m => m.Ime, new { @class = "form-control", @placeholder = "" })
+                        @Html.ValidationMessageFor(model => model.Ime, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reziser">Prezime:</label>
+                        @Html.TextBoxFor(m => m.Prezime, new { @class = "form-control", @placeholder = "" })
+                        @Html.ValidationMessageFor(model => model.Prezime, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="glumci">Telefon:</label>
+                        @Html.TextBoxFor(m => m.Telefon, new { @class = "form-control", @placeholder = "" })
+                        @Html.ValidationMessageFor(model => model.Telefon, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="godina">E-mail:</label>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "", @type = "email" })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label for="trajanje">Korisničko ime:</label>
+                        @Html.TextBoxFor(m => m.KorisnickoIme, new { @class = "form-control", @placeholder = "" })
+                        @Html.ValidationMessageFor(model => model.KorisnickoIme,"", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label for="trajanje">Password:</label>
+                        @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @placeholder = "" })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label for="trajanje">Potvrda:</label>
+                        @Html.TextBoxFor(m => m.PasswordConfirmation, new { @class = "form-control", @placeholder = "" })
+                        @Html.ValidationMessageFor(model => model.PasswordConfirmation, "", new { @class = "text-danger" })
+                    </div>
+                    <div class=" float-right">
+                        <button type="submit" class="btn btn-success">Spremi</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+

@@ -20,7 +20,9 @@ namespace Kino.WebAPI.Database
         public string Glumci { get; set; }
         public string GodinaIzdavanja { get; set; }
         public int Trajanje { get; set; }
+        public string VideoUrl { get; set; }
         public byte[] Slika { get; set; }
+
 
     }
 }

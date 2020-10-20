@@ -1,0 +1,62 @@
+﻿
+@using Kino.Model
+@model List<UlazniceViewModel>
+<div class="row">
+    <div class="col-12">
+        <div class="card card-warning">
+            <div class="card-header">
+                <h3 class="card-title"></h3>
+
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" id="table_search" onkeyup="searchTable()" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" onclick="searchTable()" class="btn btn-default"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Datum</th>
+                            <th>Sala</th>
+                            <th>Projekcija</th>
+                            <th>Sjedište</th>
+                            <th>Cijena</th>
+                            <th class="text-center">Uredi</th>
+                            <th class="text-center">Obriši</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>@item.Datum</td>
+                            <td>@item.Sala</td>
+                            <td>@item.Projekcija</td>
+                            <td>@item.OznakaSjedista</td>
+                            <td>@item.CijenaSaPopustom</td>
+
+
+                            <td class="text-center">
+                                <a class="" href="/Ulaznice/Edit/@item.UlaznicaID"><i class="fa fa-edit"></i></a>
+                            </td>
+
+                            <td class="text-center">
+                                <a class="" href="/Ulaznice/Delete/@item.UlaznicaID"><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+

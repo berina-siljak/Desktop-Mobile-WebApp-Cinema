@@ -1,0 +1,143 @@
+﻿@using Kino.WebApp.Models;
+@model UlazniceViewModel;
+<style>
+    .checkbox-grid li {
+        display: block;
+        float: left;
+        margin: 10px;
+        /*width: 20%;*/
+    }
+</style>
+@using (Html.BeginForm("Snimi", "Ulaznice", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-4">
+            <!-- general form elements -->
+            <div class="card card-warning">
+                <div class="card-header">
+                    <h3 class="card-title">DODAJ/UREDI</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+
+                <div class="card-body">
+                    @Html.HiddenFor(model => model.UlaznicaID)
+                    @Html.HiddenFor(model => model.SjedisteID)
+
+                    <div class="form-group">
+                        <label for="film">Film:</label>
+                        @Html.DropDownList("filmID", (IEnumerable<SelectListItem>)@ViewBag.Filmovi, "Odaberite film", new { @class = "form-control", @id = "filmID" })
+                    </div>
+                    <div class="form-group">
+                        <label for="projekcija">Projekcija:</label>
+                        @Html.DropDownListFor(model => model.ProjekcijaID, (IEnumerable<SelectListItem>)@ViewBag.Projekcije, "", new { @class = "form-control", @id = "projekcijaID" })
+                    </div>
+                    <div class="form-group">
+                        <label for="kupac">Kupac:</label>
+                        @Html.DropDownListFor(model => model.KupacID, (IEnumerable<SelectListItem>)@ViewBag.Kupci, "Odaberite kupca", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label for="popus">Popust:</label>
+                        @Html.TextBoxFor(m => m.Popust, new { @class = "form-control", @type = "number", @placeholder = "%" })
+                    </div>
+                    <div class="form-group">
+                        <label for="datepicker">Datum:</label>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="far fa-calendar-alt"></i>
+                                </span>
+                            </div>
+                            @Html.TextBoxFor(m => m.Datum, "{0:dd/MM/yyyy}", new { @class = "form-control pull-right", @id = "datepicker" })
+                        </div>
+
+                        <div class="bootstrap-timepicker">
+                            <div class="form-group">
+                                <label>Vrijeme:</label>
+
+                                <div class="input-group date" id="timepicker" data-target-input="nearest">
+                                    @Html.TextBoxFor(m => m.Vrijeme, "{0:HH:mm}", new { @class = "form-control datetimepicker-input", @data_target = "#timepicker" })
+                                    @*<input type="text" class="form-control datetimepicker-input" data-target="#timepicker">*@
+                                    <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                    </div>
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                            <!-- /.form group -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--/.col (left) -->
+        <!-- right column -->
+        <div class="col-md-8">
+            <!-- general form elements disabled -->
+            <div class="card card-warning" style="min-height:600px">
+                <div class="card-header">
+                    <h3 class="card-title">SJEDIŠTA</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="form-group">
+                        <div id="sjedistaContainer">
+
+                        </div>
+                        <div class="float-right">
+                            <button type="submit" class="btn btn-success">Spremi</button>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+        <!--/.col (right) -->
+
+
+    </div>
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+<script>
+          $(function () {
+        $("#filmID").change(function () {
+            var val = $(this).val();
+            var subItems="";
+            subItems += "<option value='0'>Odaberite Projekciju</option>";
+            $.getJSON("@Url.Action("GetProjekcijeByFilmId", "Projekcije")", {id:val} ,function (data) {
+                $.each(data, function (index, item) {
+                subItems+="<option value='"+item.value+"'>"+item.text+"</option>"
+              });
+              $("#projekcijaID").html(subItems)
+            });
+                $('#sjedistaContainer').empty();
+        });
+
+        $("#projekcijaID").change(function () {
+            var val = $(this).val();
+            $.ajax({
+            type: "GET",
+            url: '/Ulaznice/GetProjekcijeByProjekcijaId',
+            data: {
+                  id: val
+                },
+            success: function (data) {
+                $('#sjedistaContainer').html(data);
+            }
+            });
+        });
+           $('#datepicker').datepicker({
+    dateFormat: "dd/mm/yy"
+    });
+       //Timepicker
+    $('#timepicker').datetimepicker({
+        format: 'HH:mm'
+    })
+
+});
+</script>

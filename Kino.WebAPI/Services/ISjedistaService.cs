@@ -11,7 +11,7 @@ namespace Kino.WebAPI.Services
         List<Model.Sjedista> Insert(SjedistaInsertRequest request);
         List<Model.Sjedista> Get(SjedistaSearchRequest request);
 
-        //Model.Sjedista GetById(int id);
+        Model.Sjedista GetById(int id);
 
         //Model.Sjedista Insert(SjedistaInsertRequest request);
 

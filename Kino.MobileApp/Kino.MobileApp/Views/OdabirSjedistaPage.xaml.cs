@@ -71,22 +71,12 @@ namespace Kino.MobileApp.Views
             }
             SjedistaViewModel.Ulaznica.SjedisteID = SjedistaViewModel.SjedistaList.FirstOrDefault(x => x.OznakaSjedista == btn.Text).SjedisteID;
             previuosButton = btn;
-            //for (int i = 0; i < this.gridSjedista.ColumnDefinitions.Count; i++)
-            //{
-            //    var btn2 = this.gridSjedista.Children[i] as Button;
-            //    if (btn2.Text != btn.Text && btn2.IsEnabled == false)
-            //    {
-            //        btn2.IsEnabled = true;
-            //        btn2.BackgroundColor = Color.Green;
-            //    }
-
-            //}
-
+    
             btn.BackgroundColor = Color.Gray;
             btn.IsEnabled = false;
             this.nastavidalje.IsVisible = true;
             this.odabranoSjedalo.Text = btn.Text;
-            this.poruka.Text = "Odabrali ste sjedište sa oznakom: " + btn.Text + ".           Nastavite dalje do plaćanja!";
+            this.poruka.Text = "Odabrali ste sjedište sa oznakom: " + btn.Text + ".                  Nastavite dalje do plaćanja!";
         }
 
         private async void NastaviButton_Clicked(object sender, EventArgs e)

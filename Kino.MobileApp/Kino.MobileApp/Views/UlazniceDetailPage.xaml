@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:Kino.MobileApp.Converters"
+             mc:Ignorable="d"
+             x:Class="Kino.MobileApp.Views.UlazniceDetailPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <ContentPage.Content>
+        <StackLayout>
+
+            <ScrollView BackgroundColor="White">
+                <StackLayout Margin="10,10,10,10" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" >
+                        <Image Source="{Binding Ulaznice.BarCodeImg, Converter={StaticResource imgConv}} "></Image>
+                        </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" >
+                        <Label VerticalOptions="Center" FontAttributes="Bold" Text="Datum projekcije:"></Label>
+                        <Label VerticalOptions="Center" Text="{Binding Ulaznice.DatumProjekcije}"></Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" >
+                        <Label VerticalOptions="Center" FontAttributes="Bold" Text="Film:"></Label>
+                        <Label VerticalOptions="Center" Text="{Binding Ulaznice.Projekcija}"></Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" >
+                        <Label VerticalOptions="Center" FontAttributes="Bold" Text="Sala:"></Label>
+                        <Label VerticalOptions="Center" Text="{Binding Ulaznice.Sala}"></Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" >
+                        <Label VerticalOptions="Center"  FontAttributes="Bold" Text="Sjediste:"></Label>
+                        <Label VerticalOptions="Center" Text="{Binding Ulaznice.OznakaSjedista}"></Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" >
+                        <Label VerticalOptions="Center" FontAttributes="Bold" Text="Cijena:"></Label>
+                        <Label VerticalOptions="Center" Text="{Binding Ulaznice.CijenaSaPopustom}"></Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" >
+                        <Label VerticalOptions="Center" FontAttributes="Bold" Text="Datum kupovine ulaznice:"></Label>
+                        <Label VerticalOptions="Center" Text="{Binding Ulaznice.Datum}"></Label>
+                    </StackLayout>
+
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+            
+    </ContentPage.Content>
+</ContentPage>

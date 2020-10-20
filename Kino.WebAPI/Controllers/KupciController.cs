@@ -45,5 +45,10 @@ namespace Kino.WebAPI.Controllers
         {
             return _service.GetById(id);
         }
+        [HttpDelete("{id}")]
+        public Model.Kupci Delete(int id)
+        {
+            return _service.Delete(id);
+        }
     }
 }

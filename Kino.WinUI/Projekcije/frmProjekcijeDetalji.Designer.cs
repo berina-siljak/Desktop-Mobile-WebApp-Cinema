@@ -91,7 +91,6 @@
             // 
             // cmbSale
             // 
-            this.cmbSale.Enabled = false;
             this.cmbSale.FormattingEnabled = true;
             this.cmbSale.Location = new System.Drawing.Point(48, 342);
             this.cmbSale.Name = "cmbSale";

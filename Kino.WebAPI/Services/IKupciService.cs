@@ -13,6 +13,7 @@ namespace Kino.WebAPI.Services
         List<Model.Kupci> Get(KupciSearchRequest request);
 
         Model.Kupci GetById(int id);
+        Model.Kupci Delete(int id);
 
         Model.Kupci Insert(KupciInsertRequest request);
 

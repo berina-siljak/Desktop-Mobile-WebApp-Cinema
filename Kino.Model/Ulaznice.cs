@@ -11,6 +11,7 @@ namespace Kino.Model
         public int SjedisteID { get; set; }
         public string OznakaSjedista { get; set; }
         public int ProjekcijaID { get; set; }
+        public DateTime DatumProjekcije { get; set; }
         public string Projekcija { get; set; }
         public int? KupacID { get; set; }
         public string Kupac { get; set; }
@@ -21,7 +22,30 @@ namespace Kino.Model
      
         public byte[] BarCodeImg { get; set; }
 
+    }
+    public class UlazniceProvjera
+    {
+        public int UlaznicaID { get; set; }
+        public string poruka { get; set; }
+        public bool isValid { get; set; }
 
+        public UlazniceProvjera()
+        {
 
+        }
+        public UlazniceProvjera(Ulaznice model)
+        {
+            UlaznicaID = model.UlaznicaID;
+            if (model.DatumProjekcije >= DateTime.Now)
+            {
+                poruka = "Ulaznica je validna!";
+                isValid = true;
+            }
+            else
+            {
+                poruka = "Ulaznica nije validna!";
+                isValid = false;
+            }
+        }
     }
 }

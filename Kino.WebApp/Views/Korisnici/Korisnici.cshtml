@@ -1,0 +1,85 @@
+﻿
+@using Kino.Model
+@model List<KorisniciViewModel>
+<div class="row">
+    <div class="col-12">
+        <div class="card card-warning">
+            <div class="card-header">
+                <h3 class="card-title"></h3>
+
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" id="table_search" onkeyup="searchTable()" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" onclick="searchTable()" class="btn btn-default"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Ime</th>
+                            <th>Prezime</th>
+                            <th>E-mail</th>
+                            <th>Telefon</th>
+                            <th>Korisničko ime</th>
+                            <th class="text-center">Uredi</th>
+                            <th class="text-center">Obriši</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Count > 0)
+                        {
+                            @foreach (var item in Model)
+                            {
+                        <tr>
+                            <td>@item.Ime</td>
+                            <td>@item.Prezime</td>
+                            <td>@item.Email</td>
+                            <td>@item.Telefon</td>
+                            <td>@item.KorisnickoIme</td>
+
+                            <td class="text-center">
+                                <a class="" href="/Korisnici/Edit/@item.KorisnikID"><i class="fa fa-edit"></i></a>
+                            </td>
+               
+                            <td class="text-center">
+                                <a class="" href="/Korisnici/Delete/@item.KorisnikID"><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+<script>
+    function searchTable() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("table_search");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dataTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+

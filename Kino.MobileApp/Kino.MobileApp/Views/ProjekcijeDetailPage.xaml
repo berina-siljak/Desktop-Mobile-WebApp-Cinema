@@ -50,7 +50,7 @@
                 </StackLayout>
                 <Button Text="KUPI KARTU"
                 VerticalOptions="CenterAndExpand"
-                HorizontalOptions="Center" BackgroundColor="Orange"
+                 BackgroundColor="Gray"
                 Clicked="KupiKartu_Clicked" />
 
             </StackLayout>

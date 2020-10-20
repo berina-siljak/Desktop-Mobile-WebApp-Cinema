@@ -36,6 +36,7 @@ namespace Kino.WebAPI.Services
                 q = q.Where(s => s.Zanr.ZanrID == search.ZanrID);
             }
 
+
             var list = q.ToList();
             return _mapper.Map<List<Filmovi>>(list);
         }

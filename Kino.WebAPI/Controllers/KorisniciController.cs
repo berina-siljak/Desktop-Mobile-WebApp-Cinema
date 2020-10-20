@@ -51,6 +51,11 @@ namespace Kino.WebAPI.Controllers
         {
             return _service.GetById(id);
         }
+        [HttpDelete("{id}")]
+        public Model.Korisnici Delete(int id)
+        {
+            return _service.Delete(id);
+        }
         [HttpPost("login")]
         public Model.Korisnici Login(KorisniciLoginRequest request)
         {

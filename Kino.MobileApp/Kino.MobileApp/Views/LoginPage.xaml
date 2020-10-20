@@ -31,7 +31,7 @@
             </Entry>
             <Button Command="{Binding LoginCommand}" BackgroundColor="DarkOrange" Text="PRIJAVA"></Button>
 
-            <Label Text="                                                         ili"></Label>
+            <Label Text="                                                              ili"></Label>
 
 
             <Button Text="REGISTRACIJA" Clicked="Button_Clicked"

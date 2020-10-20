@@ -118,7 +118,6 @@ namespace Kino.WebAPI.Services
 
             var list = query.ToList();
 
-
             return _mapper.Map<List<Model.Korisnici>>(list);
 
         }
@@ -129,7 +128,14 @@ namespace Kino.WebAPI.Services
 
             return _mapper.Map<Model.Korisnici>(entity);
         }
+        public Model.Korisnici Delete(int id)
+        {
+            var entity = _context.Korisnici.Find(id);
+            _context.Remove(entity);
+            _context.SaveChanges();
 
+            return _mapper.Map<Model.Korisnici>(entity);
+        }
         public Model.Korisnici Insert(KorisniciInsertRequest request)
         {
             var entity = _mapper.Map<Database.Korisnici>(request);

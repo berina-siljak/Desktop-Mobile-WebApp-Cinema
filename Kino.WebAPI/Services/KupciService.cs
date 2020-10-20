@@ -86,7 +86,14 @@ namespace Kino.WebAPI.Services
 
             return _mapper.Map<Model.Kupci>(entity);
         }
+        public Model.Kupci Delete(int id)
+        {
+            var entity = _context.Kupci.Find(id);
+            _context.Remove(entity);
+            _context.SaveChanges();
 
+            return _mapper.Map<Model.Kupci>(entity);
+        }
 
         public Model.Kupci Insert(KupciInsertRequest request)
         {

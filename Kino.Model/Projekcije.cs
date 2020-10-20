@@ -13,5 +13,7 @@ namespace Kino.Model
         public int SalaID { get; set; }
         public string Film { get; set; }
         public int FilmID { get; set; }
+
+
     }
 }

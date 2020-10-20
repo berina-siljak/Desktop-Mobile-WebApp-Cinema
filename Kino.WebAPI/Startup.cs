@@ -68,8 +68,9 @@ namespace Kino.WebAPI
             services.AddScoped<ICRUDService<Model.Zanrovi, ZanroviSearchRequest, ZanroviInsertRequest, ZanroviInsertRequest>, ZanroviService>();
             services.AddScoped<ICRUDService<Model.Sale, SaleSearchRequest, SaleInsertRequest, SaleInsertRequest>, SaleService>();
             services.AddScoped<ICRUDService<Model.Projekcije, ProjekcijeSearchRequest, ProjekcijeInsertRequest, ProjekcijeInsertRequest>, ProjekcijeService>();
-            services.AddScoped<ICRUDService<Model.Ulaznice, UlazniceSearchRequest, UlazniceInsertRequest, UlazniceInsertRequest>, UlazniceService>();
+            services.AddScoped<IUlazniceService, UlazniceService>();
             services.AddScoped<ICRUDService<Model.Komentari, KomentariSearchRequest, KomentariInsertRequest, KomentariInsertRequest>, KomentariService>();
+            services.AddScoped<ICRUDService<Model.Ocjene, OcjeneSearchRequest, OcjeneInsertRequest, OcjeneInsertRequest>, OcjeneService>();
             services.AddScoped<IKupciService, KupciService>();
 
             services.AddSwaggerGen(c =>

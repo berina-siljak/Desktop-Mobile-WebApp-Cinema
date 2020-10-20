@@ -1,7 +1,9 @@
-﻿using System;
+﻿//using Syncfusion.SfRating.XForms.UWP;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -51,7 +53,16 @@ namespace Kino.MobileApp.UWP
                 rootFrame = new Frame();
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
+                //TODO CHECK
+                ////Add `using System.Reflection;` 
+                //List<Assembly> assembliesToInclude = new List<Assembly>();
 
+                ////Now, add all the assemblies that your app uses 
+                //assembliesToInclude.Add(typeof(SfRatingRenderer).GetTypeInfo().Assembly);
+
+                //// replaces Xamarin.Forms.Forms.Init(e);
+                //Xamarin.Forms.Forms.Init(e, assembliesToInclude);
+                //END OF CHECK
                 Xamarin.Forms.Forms.Init(e);
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)

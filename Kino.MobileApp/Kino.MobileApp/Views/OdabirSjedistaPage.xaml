@@ -15,7 +15,7 @@
                 <Grid x:Name="loadingOverlay" IsVisible="{Binding IsBusy}">
                     <ActivityIndicator IsRunning="{Binding IsBusy}" />
                 </Grid>
-                <Label Text="Odaberite sjedalo" HorizontalOptions="CenterAndExpand"  FontSize="Medium"></Label>
+                <Label Text="Odaberite sjedište:" HorizontalOptions="CenterAndExpand"  FontSize="Medium"></Label>
             </StackLayout>
             <ScrollView VerticalScrollBarVisibility="Default" HorizontalOptions="Center" VerticalOptions="Center" HorizontalScrollBarVisibility="Default">
                 <StackLayout BackgroundColor="White" HeightRequest="500" >
@@ -24,8 +24,8 @@
             </ScrollView>
             <StackLayout x:Name="nastavidalje" IsVisible="False">
                 <Label x:Name="odabranoSjedalo" IsVisible="False"></Label>
-                <Label x:Name="poruka" BackgroundColor="DarkOrange" HeightRequest="50" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" LineBreakMode="WordWrap" ></Label>
-                <Button Text="Nastavi dalje" Clicked="NastaviButton_Clicked" BackgroundColor="Orange"></Button>
+                <Label x:Name="poruka" BackgroundColor="Gray" HeightRequest="50" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" LineBreakMode="WordWrap" ></Label>
+                <Button Text="NASTAVI" Clicked="NastaviButton_Clicked" BackgroundColor="Orange"></Button>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -44,9 +44,11 @@ namespace Kino.WebAPI.Mappers
 
             CreateMap<Database.Ulaznice, Model.Ulaznice>()
                  .ForMember(s => s.OznakaSjedista, a => a.MapFrom(b => b.Sjediste.OznakaReda + "-" + b.Sjediste.OznakaKolone))
-                 //.ForMember(s => s.Cijena, a => a.MapFrom(b => b.Projekcija.Cijena))
+                 .ForMember(s => s.BarCodeImg, a => a.MapFrom(b => b.BarCodeIMG))
+                 .ForMember(s => s.DatumProjekcije, a => a.MapFrom(b => b.Projekcija.Datum))
                  .ForMember(s => s.Projekcija, a => a.MapFrom(b => b.Projekcija.Film.Naziv))
-                 .ForMember(s => s.Sala, a => a.MapFrom(b => b.Projekcija.Sala.Naziv));
+                 .ForMember(s => s.Sala, a => a.MapFrom(b => b.Projekcija.Sala.Naziv)).
+                 ForMember(s => s.Kupac, a => a.MapFrom(b => b.Kupac.KorisnickoIme));
 
             CreateMap<Database.Ulaznice, UlazniceInsertRequest>().ReverseMap();
 
@@ -54,6 +56,11 @@ namespace Kino.WebAPI.Mappers
                 .ForMember(s => s.KorisnickoIme, a =>
                      a.MapFrom(b => new EF.KinoContext().Kupci.Find(b.KupacID).KorisnickoIme));
             CreateMap<Database.Komentari, KomentariInsertRequest>().ReverseMap();
+
+            CreateMap<Database.Ocjene, Model.Ocjene>()
+            .ForMember(s => s.KorisnickoIme, a =>
+                 a.MapFrom(b => new EF.KinoContext().Kupci.Find(b.KupacID).KorisnickoIme));
+            CreateMap<Database.Ocjene, OcjeneInsertRequest>().ReverseMap();
 
             CreateMap<Database.Filmovi, Model.Filmovi>()
            .ForMember(s => s.NazivZanra, a =>

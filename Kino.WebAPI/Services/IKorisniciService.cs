@@ -12,6 +12,7 @@ namespace Kino.WebAPI.Services
         List<Model.Korisnici> Get(KorisniciSearchRequest request);
 
         Model.Korisnici GetById(int id);
+        Model.Korisnici Delete(int id);
 
         Model.Korisnici Insert(KorisniciInsertRequest request);
 

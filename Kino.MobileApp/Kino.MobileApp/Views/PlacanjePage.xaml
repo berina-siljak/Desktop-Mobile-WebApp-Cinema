@@ -43,7 +43,9 @@
 
                         <Label Text="{Binding CijenaSaPopustom}"></Label>
                     </StackLayout>-->
-                    <StackLayout Grid.Row="1" Grid.ColumnSpan="2">
+                <Label Text="Unesite podatke Vaše kartice:" HorizontalOptions="CenterAndExpand"  FontSize="Medium"></Label>
+
+                <StackLayout Grid.Row="1" Grid.ColumnSpan="2">
                         <Entry x:Name="CreditCardNumber" Placeholder="Enter your credit card number"></Entry>
                     </StackLayout>
 
@@ -60,7 +62,7 @@
                     </StackLayout>
                 <!--</Grid>-->
                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End">
-                    <Button Clicked="Plati_OnClicked"  BorderColor="DeepSkyBlue" BackgroundColor="Transparent" TextColor="DeepSkyBlue" Text="Plati " />
+                    <Button Clicked="Plati_OnClicked"  BackgroundColor="Gray" TextColor="Black" Text="Plati" />
                 </StackLayout>
 
             </StackLayout>

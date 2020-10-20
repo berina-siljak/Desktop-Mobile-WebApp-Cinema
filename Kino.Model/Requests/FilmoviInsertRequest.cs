@@ -15,6 +15,7 @@ namespace Kino.Model.Requests
         public byte[] Slika { get; set; }
         public Zanrovi Zanr { get; set; }
         public int ZanrID { get; set; }
+        public string VideoUrl { get; set; }
     }
 }
 

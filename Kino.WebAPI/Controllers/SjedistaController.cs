@@ -27,9 +27,15 @@ namespace Kino.WebAPI.Controllers
         {
             return _service.Get(request);
         }
+        [HttpGet("{id}")]
+        public Model.Sjedista GetById(int id)
+        {
+            return _service.GetById(id);
+        }
         [HttpPost]
         public List<Model.Sjedista> Insert(SjedistaInsertRequest request)
         {
+
             return _service.Insert(request);
         }
 

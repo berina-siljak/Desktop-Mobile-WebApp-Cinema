@@ -10,10 +10,48 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Kino.WebAPI.Controllers
 {
-    public class UlazniceController : BaseCRUDController<Model.Ulaznice, UlazniceSearchRequest, UlazniceInsertRequest, UlazniceInsertRequest>
+    [Route("api/[controller]")]
+    [ApiController]
+    public class UlazniceController : ControllerBase
     {
-        public UlazniceController(ICRUDService<Ulaznice, UlazniceSearchRequest, UlazniceInsertRequest, UlazniceInsertRequest> service) : base(service)
+        private readonly IUlazniceService _service;
+        public UlazniceController(IUlazniceService service)
         {
+            _service = service;
+        }
+
+        [HttpGet]
+        public List<Model.Ulaznice> Get([FromQuery]UlazniceSearchRequest request)
+        {
+            return _service.Get(request);
+        }
+
+        [HttpPost]
+        public Ulaznice Insert(UlazniceInsertRequest request)
+        {
+            var baseUrl = $"{this.Request.Scheme}://{this.Request.Host}{this.Request.PathBase}";
+
+            return _service.Insert(request, baseUrl);
+        }
+        [HttpDelete("{id}")]
+        public Model.Ulaznice Delete(int id)
+        {
+            return _service.Delete(id);
+        }
+        [HttpGet("Provjera")]
+        public UlazniceProvjera Provjera(int id)
+        {
+            return new UlazniceProvjera(_service.ProvjeraUlaznice(id));
+        }
+        [HttpGet("{id}")]
+        public Model.Ulaznice GetById(int id)
+        {
+            return _service.GetById(id);
+        }
+        [HttpPut("{id}")]
+        public Model.Ulaznice Update(int id, [FromBody]UlazniceInsertRequest request)
+        {
+            return _service.Update(id, request);
         }
     }
 }

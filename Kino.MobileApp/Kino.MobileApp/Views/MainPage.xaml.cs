@@ -4,8 +4,8 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
 using Kino.MobileApp.Models;
+using Kino.MobileApp.ViewModels;
 
 namespace Kino.MobileApp.Views
 {
@@ -20,7 +20,7 @@ namespace Kino.MobileApp.Views
             InitializeComponent();
 
             MasterBehavior = MasterBehavior.Popover;
-
+            this.BindingContext = new RattingBarViewModal();
             MenuPages.Add((int)MenuItemType.Browse, (NavigationPage)Detail);
         }
 
@@ -51,6 +51,10 @@ namespace Kino.MobileApp.Views
                     case (int)MenuItemType.Odjava:
                         MenuPages.Add(id, new NavigationPage(new LoginPage()));
                         break;
+                  
+
+
+
                 }
             }
 
